@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import Component from './Component';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [toggle, setToggle] = useState(false);
+	const [bgColor, setBGColor] = useState('yellow');
+
+	return (
+		<div className='App'>
+			<h1>Lifecycle</h1>
+			<Button variant='primary' onClick={() => setToggle(!toggle)}>
+				Show Component
+			</Button>
+			<Button
+				variant='secondary'
+				onClick={() => setBGColor(bgColor === 'yellow' ? 'red' : 'yellow')}
+			>
+				Change BG Color
+			</Button>
+			{toggle && <Component bgColor={bgColor} />}
+		</div>
+	);
 }
 
 export default App;
